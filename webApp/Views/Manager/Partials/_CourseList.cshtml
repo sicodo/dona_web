@@ -1,0 +1,51 @@
+﻿@using webApp.Extensions
+@model IEnumerable<ViewModels.ContentItem>
+<div class="row">
+    <div class="col-sm-12">
+        <a href="javascript:void(0)" class=""><i class="fa fa-plus-square-o fa-3x"></i></a>
+    </div>
+</div>
+    @if (Model == null || Model.Count() == 0)
+    {
+        <div class="text-warning">Please create <a href="showEditContent()">new course</a></div>
+    }
+    else
+    {
+        //int index = 1;
+        foreach (var item in Model)
+        {
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    @*<span class="badge">@(index++)</span>*@
+                    @Html.Raw(item.title)
+                    <a href="javascript:void(0)" class="pull-right"><i class="fa fa-times"></i></a>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-sm-8">@Html.Raw(item.description)</div>
+                        <div class="col-sm-4">
+                            <ul class="list-group">
+                                <li class="list-group-item">
+                                    <em>Date Post </em><b>@item.date_created.ToDateTimeString()</b>
+                                </li>
+                                <li class="list-group-item @(item.is_published ? "" : "text-muted")">
+                                    <em>Published </em><b>@item.is_published.ToLocalString()</b>
+                                </li>
+                                <li class="list-group-item @(item.is_menu_item ? "": "text-muted")">
+                                    <em>Attach to menu </em><b>@item.is_menu_item.ToLocalString()</b>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                </div>
+                <div class="panel-footer">
+                    <ul class="list-inline">
+                        <li><a href="javascript:void(0)"><i class="fa fa-eye"></i> View</a></li>
+                        <li><a href="javascript:void(0)"><i class="fa fa-edit"></i> Edit</a></li>
+                    </ul>
+                </div>
+            </div>
+        }
+    }
+

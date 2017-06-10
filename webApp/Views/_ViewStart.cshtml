@@ -1,0 +1,10 @@
+﻿@{
+    if (webApp.Common.IsManagerRequest())
+    {        
+        Layout = "~/Views/Shared/_Layout_Manager.cshtml";        
+    }
+    else
+    {
+        Layout = "~/Views/Shared/_Layout.cshtml";        
+    }
+}

@@ -1,0 +1,19 @@
+﻿<script type="text/javascript">
+    if ("undefined" === typeof app) {
+        var app = {};
+    }
+
+    app.content_types = {
+        course: @((int)ViewModels.Enums.ContentType.Course),
+        schedule: @((int)ViewModels.Enums.ContentType.Schedule)
+        };
+
+    app.url = {
+        root: '@Url.Content("~/")',
+        popup: '@Url.Action("_Popup", "Home")',
+        getContent: '@Url.Action("_GetContent", "Home")',
+        getCourse: '@Url.Action("_GetCourse", "Home")',
+        getSchedule: '@Url.Action("_Schedule", "Home")',
+        courseRegistration: '@Url.Action("_RegisterCourse", "Home")'
+    };
+</script>

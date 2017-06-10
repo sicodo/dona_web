@@ -1,0 +1,5 @@
+C:\Users\Thanh\Documents\Visual Studio 2013\Projects\Dona\ViewModels\bin\Release\ViewModels.dll
+C:\Users\Thanh\Documents\Visual Studio 2013\Projects\Dona\ViewModels\bin\Release\ViewModels.pdb
+C:\Users\Thanh\Documents\Visual Studio 2013\Projects\Dona\ViewModels\obj\Release\ViewModels.csprojResolveAssemblyReference.cache
+C:\Users\Thanh\Documents\Visual Studio 2013\Projects\Dona\ViewModels\obj\Release\ViewModels.dll
+C:\Users\Thanh\Documents\Visual Studio 2013\Projects\Dona\ViewModels\obj\Release\ViewModels.pdb

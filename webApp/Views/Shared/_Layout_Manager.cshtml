@@ -1,0 +1,89 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, shrink-to-fit=no, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/bootstrap")
+    @Styles.Render("~/Content/fontawesome")
+    <link href="~/Content/admin-site.css" rel="stylesheet" />
+</head>
+<body>
+    <nav class="navbar navbar-default navbar-fixed-top topbar">
+        <div class="container-fluid">
+            <div class="navbar-header">
+
+                <a href="#" class="navbar-brand">
+                    <span class="visible-xs">Dona</span>
+                    <span class="hidden-xs">Dona management</span>
+                </a>
+
+                <p class="navbar-text">
+                    <a href="#" class="sidebar-toggle">
+                        <i class="fa fa-bars"></i>
+                    </a>
+                </p>
+
+            </div>
+
+            <div class="navbar-collapse collapse" id="navbar-collapse-main">
+
+                <ul class="nav navbar-nav navbar-right">
+
+                    <li>
+                        <button class="navbar-btn">
+                            <i class="fa fa-bell"></i>
+                        </button>
+                    </li>
+
+                    <li class="dropdown">
+                        <button class="navbar-btn" data-toggle="dropdown">
+                            <img src="http://lorempixel.com/30/30/people" class="img-circle">
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Account</a></li>
+                            <li><a href="#">Dashboard</a></li>
+                            <li class="nav-divider"></li>
+                            <li><a href="Account/_Logout">Logout</a></li>
+                        </ul>
+                    </li>
+
+                </ul>
+
+            </div>
+        </div>
+    </nav>
+
+    <article class="wrapper">
+
+        <aside class="sidebar">
+            <ul class="sidebar-nav">
+                <li class="active"><a href="#dashboard" data-toggle="tab"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
+                <li><a href="#configuration" data-toggle="tab"><i class="fa fa-cogs"></i> <span>Configuration</span></a></li>
+                <li><a href="#users" data-toggle="tab"><i class="fa fa-users"></i> <span>Users</span></a></li>
+                <li><a href="#contents" data-toggle="tab"><i class="fa fa-envelope"></i> <span>Content</span></a></li>
+            </ul>
+        </aside>
+
+        <section class="main">
+            @RenderBody()
+        </section>
+    </article>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("Scripts", required: false)
+    @Html.Partial("Partials/_Manager_ClientVariables")
+
+    <!-- Menu Toggle Script -->
+    <script type="text/javascript">
+        $(document).on("click", ".sidebar-toggle", function () {
+            $(".wrapper").toggleClass("toggled");
+        });
+
+    </script>
+</body>
+</html>

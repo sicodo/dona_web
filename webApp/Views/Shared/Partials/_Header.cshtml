@@ -1,0 +1,25 @@
+﻿<div id="top-menu-fixed-space"></div>
+<div id="header-wrapper">
+    <div class="row">
+        <div name="logo-container" class="col-xs-2">
+            <a name="logo-link"><img name="logo-image" class="image-responsive" src="~/Media/Images/fast_logo.jpg" /></a>
+        </div>
+        <div class="col-xs-10">
+            <div name="header-title">
+                <p class="pull-left">Giảng dạy tiếng anh, nhanh và hiệu quả hàng đầu Việt Nam</p>
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <p class="pull-right">
+                        @User.Identity.Name 
+                        | <a href="@Url.Action("_Logout", "Account")">Sign out</a>
+                    </p>
+                    <div class="pull-right"></div>
+                }
+                <hr name="horizontal-line" />
+            </div>
+            @Html.Partial("Partials/_TopMenu", "Home")
+        </div>
+
+    </div>
+</div>
+

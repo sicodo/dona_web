@@ -1,0 +1,17 @@
+﻿@using webApp.Extensions
+@model ViewModels.CourseRegistration
+<p>Xin chào, Admin</p>
+<p>Đây là email đăng ký được gửi từ website.</p>
+<p>Họ và tên: <b>@Model.full_name</b></p>
+<p>Năm sinh: <b>@Model.dob.ToDateString()</b></p>
+<p>Email: <b>@Model.email</b></p>
+<p>Điện thoại: <b>@Model.phone</b></p>
+<p>Khóa học: <b>@Html.Raw(webApp.Common.GetCourse(Model.id_course).title)</b></p>
+<p>Trình độ: </p>
+<ul>
+    @foreach (var item in Model.skills)
+    {
+        @:<li>@item.Key: <b>@item.Value</b></li>
+    }
+</ul>
+<p>Yêu cầu: <b>@Model.course_request</b></p>

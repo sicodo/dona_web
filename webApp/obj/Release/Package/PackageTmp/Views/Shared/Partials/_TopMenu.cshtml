@@ -1,0 +1,20 @@
+﻿@{
+    var courses = webApp.Common.GetCourses();
+}
+<div name="menu-top" class=" navbar-collapse" id="menu_top">
+    <ul class="nav navbar-nav">
+        <li><a>Trang chủ</a></li>
+        <li class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Khóa học<span class="caret"></span></a>
+            <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                @foreach(var item in courses){
+                    @:<li><a href="javascript:void(0)" onclick="showCourse(@item.id_content);">@Html.Raw(item.title)</a></li>
+                }
+            </ul>
+        </li>
+        <li><a href="javascript:void(0)" onclick="showSchedule()">Lịch khai giảng</a></li>
+        <li><a>Chi nhánh</a></li>
+        <li><a>Liên hệ</a></li>
+    </ul>
+
+</div>

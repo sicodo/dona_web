@@ -1,0 +1,72 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout_Manager.cshtml";
+    ViewBag.Title = "Index";
+}
+<div class="col-sm-offset-4 col-sm-4">
+    <h2>Login</h2>
+    <form id="form_login" method="post" action="@Url.Action("_Login", "Account")" onsubmit="return submitForm()">
+        <div class="well">
+            <div class="form-group">
+                <label>Username:</label>
+                <input type="text" name="id_user" maxlength="20" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label>Password:</label>
+                <input type="password" name="password" maxlength="20" class="form-control" />
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">Login</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+@section scripts{
+    @Scripts.Render("~/bundles/jqueryval")
+    <script type="text/javascript">
+        var my_form = {
+            init: function () {
+                my_form.form = $("#form_login");
+                my_form.form.validate();
+
+                my_form.model = my_form.form.serialize();
+            },
+
+            controls: function (name, value) {
+                var control = my_form.form.find("[name='" + name + "']:first");
+                if (value != undefined) {
+                    if (control.is("input:text") || control.is("textarea") || control.is("input:hidden")) {
+                        control.val(value);
+                    }
+                }
+                return control;
+            },
+
+            login: function () {
+                my_form.model = my_form.form.serializeFormJSON();
+                post(app.url.login,
+                    my_form.model,
+                    function (response) {
+                        showPopup({
+                            title: "Result",
+                            content: response.message
+                        });
+                    }
+                );
+            }
+        };
+
+        var submitForm = function () {
+            //var is_valid = my_form.form.validate();
+            if (my_form.form.valid()) {
+                my_form.login();
+            }
+            return false;
+        }
+
+        $(function () {
+            my_form.init();
+
+        });
+    </script>
+}

@@ -1,0 +1,11 @@
+C:\Users\Thanh\Documents\Visual Studio 2013\Projects\Dona\DonaReposity\bin\Debug\DonaReposity.dll
+C:\Users\Thanh\Documents\Visual Studio 2013\Projects\Dona\DonaReposity\bin\Debug\DonaReposity.pdb
+C:\Users\Thanh\Documents\Visual Studio 2013\Projects\Dona\DonaReposity\bin\Debug\Dapper.dll
+C:\Users\Thanh\Documents\Visual Studio 2013\Projects\Dona\DonaReposity\bin\Debug\ViewModels.dll
+C:\Users\Thanh\Documents\Visual Studio 2013\Projects\Dona\DonaReposity\bin\Debug\ViewModels.pdb
+C:\Users\Thanh\Documents\Visual Studio 2013\Projects\Dona\DonaReposity\bin\Debug\Dapper.xml
+C:\Users\Thanh\Documents\Visual Studio 2013\Projects\Dona\DonaReposity\obj\Debug\DonaReposity.csprojResolveAssemblyReference.cache
+C:\Users\Thanh\Documents\Visual Studio 2013\Projects\Dona\DonaReposity\obj\Debug\DonaReposity.dll
+C:\Users\Thanh\Documents\Visual Studio 2013\Projects\Dona\DonaReposity\obj\Debug\DonaReposity.pdb
+C:\Users\Thanh\Documents\Visual Studio 2013\Projects\Dona\DonaReposity\bin\Debug\Ultilities.dll
+C:\Users\Thanh\Documents\Visual Studio 2013\Projects\Dona\DonaReposity\bin\Debug\Ultilities.pdb

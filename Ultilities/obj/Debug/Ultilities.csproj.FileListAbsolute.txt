@@ -1,0 +1,5 @@
+C:\Users\Thanh\Documents\Visual Studio 2013\Projects\Dona\Ultilities\bin\Debug\Ultilities.dll
+C:\Users\Thanh\Documents\Visual Studio 2013\Projects\Dona\Ultilities\bin\Debug\Ultilities.pdb
+C:\Users\Thanh\Documents\Visual Studio 2013\Projects\Dona\Ultilities\obj\Debug\Ultilities.dll
+C:\Users\Thanh\Documents\Visual Studio 2013\Projects\Dona\Ultilities\obj\Debug\Ultilities.pdb
+C:\Users\Thanh\Documents\Visual Studio 2013\Projects\Dona\Ultilities\obj\Debug\Ultilities.csprojResolveAssemblyReference.cache

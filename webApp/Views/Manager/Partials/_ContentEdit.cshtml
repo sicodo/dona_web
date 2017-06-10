@@ -1,0 +1,28 @@
+﻿@model ViewModels.IContent
+@{
+    
+}
+
+@using(Html.BeginForm("_EditContent", "Manager", FormMethod.Post)){
+<div class="form-group">
+    <label class="col-sm-2">Title</label>
+    <div class="col-sm-10">
+        @Html.TextBoxFor(a => a.title, new { @class="form-control", maxlength=500})
+    </div>
+</div>
+
+<div class="form-group">
+    <label class="col-sm-2">Description</label>
+    <div class="col-sm-10">
+        @Html.TextAreaFor(a => a.description, new { @class="form-control", maxlength=2000})
+    </div>
+</div>
+
+<div class="form-group">
+    <label class="col-sm-2">Content</label>
+    <div class="col-sm-10">
+        @Html.TextAreaFor(a => a.content, new { @class = "form-control", maxlength = int.MaxValue })
+    </div>
+</div>
+
+}

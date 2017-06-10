@@ -1,0 +1,337 @@
+﻿@{
+    var courses = webApp.Common.GetCourses();
+}
+@Html.Partial("Partials/_Banner", "Home")
+<div class="row">
+    @foreach (var item in courses)
+    {
+        <div class="col-sm-4">
+            <div name="course-container" class="panel panel-info">
+                <div class="panel-heading">@Html.Raw(item.title)</div>
+                <div class="panel-body">
+                    <a class="no-underline" href="javascript:void(0)" onclick="showCourse(@(item.id_content));">@Html.Raw(item.description)</a>
+                </div>
+                @*<div class="panel-footer"></div>*@
+            </div>
+        </div>
+    }
+</div>
+<div class=" row">
+    <div class="col-sm-12">
+        <form class="form-horizontal" novalidate name="form_register" id="form_register" onsubmit="return submitForm();" action="@Url.Action("_RegisterCourse")" method="post">
+            @Html.AntiForgeryToken()
+            <input type="hidden" name="skills[0].Key" value="toeic" />
+            <input type="hidden" name="skills[1].Key" value="grammar" />
+            <input type="hidden" name="skills[2].Key" value="speaking" />
+            <input type="hidden" name="skills[3].Key" value="listening" />
+
+            <div class="text-center">
+                <h4 class="text-primary">FORM ĐĂNG KÝ</h4>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2">Họ và tên</label>
+                <div class="col-sm-4">
+                    <input class="form-control" type="text" name="full_name" id="full_name" maxlength="50"
+                           required data-msg-required="Vui lòng nhập họ tên" />
+                </div>
+                <label class="control-label col-sm-2 col-sm-offset-2">Năm sinh</label>
+                <div class="col-sm-2"><input class="form-control datepicker" type="text" name="dob" data-date-format="DD/MM/YYYY" /></div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2">Email</label>
+                <div class="col-sm-4"><input class="form-control" type="text" name="email" required /></div>
+                <label class="control-label col-sm-2 col-sm-offset-2">Điện thoại</label>
+                <div class="col-sm-2"><input class="form-control" type="text" name="phone" /></div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2">Nghề nghiệp</label>
+                <div class="col-sm-3">
+                    <input id="job_title_student" type="radio" name="job_title" value="student" /> <label for="job_title_student">Học sinh/Sinh viên</label>
+                </div>
+                <div class="col-sm-3">
+                    <input id="job_title_working" type="radio" name="job_title" value="working" /> <label for="job_title_working">Người đi làm</label>
+                </div>
+            </div>
+            <div class="form-group clearfix">
+                <label class="control-label col-sm-2">Khóa học</label>
+                <div class="col-sm-4">
+                    <div class="dropdown">
+                        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+                            <span id="selected_course_name">- Chọn -</span>
+                            <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu" name="course_options">
+                            @foreach (var item in courses)
+                            {
+                                @:<li><a data-value="@item.id_content" href="javascript:void(0)" onclick="$('#id_course').val(@item.id_content);$('#selected_course_name').html('@Html.Raw(item.title)')">@Html.Raw(item.title)</a></li>
+                    }
+                        </ul>
+                    </div>
+                    <input type="hidden" id="id_course" name="id_course"
+                           required data-msg-required="Vui lòng chọn khóa học" />
+                </div>
+            </div>
+            <h4>Trình độ hiện tại</h4>
+            <div id="skill-container" class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th width="30%"></th>
+                            <th>&lt;350</th>
+                            <th>&lt;550</th>
+                            <th>&lt;750</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th>TOEIC</th>
+                            <th><input type="radio" name="skills[0].Value" id="toeic_350" value="350" /></th>
+                            <th><input type="radio" name="skills[0].Value" id="toeic_550" value="550" /></th>
+                            <th><input type="radio" name="skills[0].Value" id="toeic_750" value="750" /></th>
+                        </tr>
+                    </tbody>
+                </table>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th width="30%"></th>
+                            <th width="10%">Yếu</th>
+                            <th width="15%">Trung bình</th>
+                            <th width="15%">Khá</th>
+                            <th width="15%">Tốt</th>
+                            <th width="15%">Rất tốt</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th>GRAMMAR</th>
+                            <th><input type="radio" selected name="skills[1].Value" id="grammar_1" value="weak" /></th>
+                            <th><input type="radio" name="skills[1].Value" id="grammar_2" value="normal" /></th>
+                            <th><input type="radio" name="skills[1].Value" id="grammar_3" value="good" /></th>
+                            <th><input type="radio" name="skills[1].Value" id="grammar_4" value="very_good" /></th>
+                            <th><input type="radio" name="skills[1].Value" id="grammar_5" value="excellent" /></th>
+                        </tr>
+                        <tr>
+                            <th>SPEAKING</th>
+                            <th><input type="radio" selected name="skills[2].Value" id="speaking_1" value="weak" /></th>
+                            <th><input type="radio" name="skills[2].Value" id="speaking_2" value="normal" /></th>
+                            <th><input type="radio" name="skills[2].Value" id="speaking_3" value="good" /></th>
+                            <th><input type="radio" name="skills[2].Value" id="speaking_4" value="very_good" /></th>
+                            <th><input type="radio" name="skills[2].Value" id="speaking_5" value="excellent" /></th>
+                        </tr>
+                        <tr>
+                            <th>LISTENING</th>
+                            <th><input type="radio" selected name="skills[3].Value" id="speaking_1" value="weak" /></th>
+                            <th><input type="radio" name="skills[3].Value" id="speaking_2" value="normal" /></th>
+                            <th><input type="radio" name="skills[3].Value" id="speaking_3" value="good" /></th>
+                            <th><input type="radio" name="skills[3].Value" id="speaking_4" value="very_good" /></th>
+                            <th><input type="radio" name="skills[3].Value" id="speaking_5" value="excellent" /></th>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h4>Yêu cầu của bạn về khóa học</h4>
+            <div class="form-group">
+                <div class="col-sm-12">
+                    <textarea id="course_request" name="course_request" rows="4" class="form-control"></textarea>
+                </div>
+
+            </div>
+
+            <div class="form-group">
+                <div class="col-sm-12 text-center">
+                    <button class="btn btn-primary btn-lg" type="submit">Submit</button>
+                </div>
+            </div>
+        </form>
+
+    </div>
+</div>
+@Html.Partial("Partials/_Popup", "Home")
+@section scripts{    
+@Scripts.Render("~/bundles/jqueryval")
+@Scripts.Render("~/bundles/bootstrapDatePicker")
+
+<script type="text/javascript">
+
+    var form_register = {
+
+        init: function () {
+            //form_register.prefix_skill = "skill_";
+            //form_register.skill_names = {
+            //    "toeic": "skills[0]", 
+            //    "grammar": "skills[1]", 
+            //    "speaking": "skills[2]", 
+            //    "listening": "skills[3]"
+            //};
+
+
+            form_register.form = $("#form_register");
+            form_register.form.skills = $("#form_register :hidden[name^=skills]");
+            form_register.form.validate();
+            form_register.course_options = form_register.form.find("[name=course_options]:first");
+
+            form_register.model = form_register.form.serialize();
+            //form_register.model.skills = [];
+        },
+
+        controls: function (name, value) {
+            var control = form_register.form.find("[name='" + name + "']:first");
+            if (value != undefined) {
+                if (control.is("input:text") || control.is("textarea") || control.is("input:hidden")) {
+                    control.val(value);
+                }
+                else if (control.is("input:radio")) {
+                    control = form_register.form.find("[name='" + name + "'][value=" + value + "]");
+                    control.trigger("click");
+                }
+            }
+            return control;
+        },
+
+        getSkillIndex: function (name, create_if_not_existed) {
+            var result = -1;
+            var indexes = $.map(form_register.model.skills, function (obj, index) {
+                if (obj.Key == name) {
+                    return index;
+                }
+            });
+            result = indexes.length > 0 ? indexes[0] : -1;
+            if (result == -1 && create_if_not_existed) {
+                form_register.model.skills.push({ Key: name, Value: "" });
+                result = form_register.model.skills.length - 1;
+            }
+            return result;
+        },
+
+        removeSkill: function(name, idx){
+            if (idx > -1) {
+                if (form_register.model.skills[idx].Key == name) {
+                    form_register.model.skills.splice(idx, 1);
+                }
+            }
+            else {
+                var foundIndex = form_register.getSkillIndex(name);
+                form_register.model.skills.splice(foundIndex, 1);
+            }
+        },
+        /* remove 
+
+        //// serialize value from model to form control
+        //serializeSkill: function (name) {
+        //    var skill_name = form_register.prefix_skill + name;
+        //    var skill_index = form_register.getSkillIndex(name);
+        //    if(skill_index > -1){
+        //        form_register.controls(skill_name, form_register.model.skills[skill_index].Value);
+        //    }
+        //},
+
+        // serialize value from model to form controls
+        //serializeSkills: function () {
+        //    $.each(form_register.arr_skills, function (idx, name) {
+        //        form_register.serializeSkill(name);
+        //    });
+        //    form_register.controls("skills", JSON.stringify(form_register.model.skills));
+        //},
+
+        //// deserialize value from form control to model
+        //deserializeSkill: function (name) {
+        //    var skill_name = form_register.prefix_skill + name;
+        //    var idx = form_register.getSkillIndex(name, true);
+        //    if (form_register.form.find("[name=" + skill_name + "]:selected").size() > 0) {
+        //        var value = form_register.form.find("[name=" + skill_name + "]:selected").val();
+        //        form_register.model.skills[foundIndex].Value = value;
+        //    }
+        //    else {
+        //        form_register.removeSkill(name, idx);
+        //    }
+        //},
+
+        //// deserialize value from form controls to model
+        //deserializeSkills: function () {
+        //    $.each(form_register.arr_skills, function (idx, name) {
+        //        form_register.deserializeSkill(name);
+        //    });
+        //    form_register.controls("skills").val(JSON.stringify(form_register.model.skills));
+        //},
+
+        //// deserialize value from model to form controls
+        //deserialize: function () {
+        //    form_register.model = form_register.form.serializeFormJSON();
+        //    form_register.model.skills = [];
+        //    form_register.deserializeSkills();
+        //},
+        */
+        // serialize value from form controls to model
+        serialize: function () {
+            var model = form_register.model;
+            form_register.controls("full_name", model.full_name);
+            form_register.controls("email", model.email);
+            form_register.controls("dob", model.dob);
+            form_register.controls("phone", model.phone);
+            if (model.id_course) {
+                form_register.course_options.find("a[data-value=" + model.id_course + "]:first").trigger("click");
+            }
+            form_register.controls("job_title", model.job_title);
+            form_register.controls("course_request", model.course_request);
+            $.each(form_register.model.skills, function (idx, item) {
+                form_register.controls("skills[" + idx + "].Value", form_register.model.skills[idx].Value);
+            });
+            //form_register.serializeSkills();
+        },
+
+        registerCourse: function () {
+            form_register.model = form_register.form.serializeFormJSON();
+            post(app.url.courseRegistration,
+                form_register.model,
+                function (response) {
+                    //console.log(response);
+                    showPopup({
+                        title: "Result",
+                        content: response.message
+                    });
+                }
+            );
+        }
+    };
+
+    function fillData() {
+        form_register.model = {
+            full_name: "Phan Tuan Thanh",
+            email: "phantuanthanh@gmail.com",
+            phone: "0938060982",
+            dob: "06/09/1982",
+            job_title: "working",
+            id_course: 1,
+            skills: [{ Key: "toeic", Value: 350 },
+                { Key: "grammar", Value: "weak" },
+                { Key: "speaking", Value: "good" },
+                { Key: "listening", Value: "very_good" }],
+            course_request: "something blah blah blah"
+        };
+        form_register.serialize();
+    }
+
+
+    var submitForm = function () {
+        //var is_valid = form_register.form.validate();
+        if (form_register.form.valid())
+        {
+            form_register.registerCourse();
+        }
+        return false;
+    }
+
+
+
+    $(function () {
+        form_register.init();
+
+        fillData();
+        attachCarouselProgressBar();
+
+    });
+</script>
+
+}

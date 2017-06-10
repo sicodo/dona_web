@@ -1,0 +1,27 @@
+﻿@using webApp.Extensions
+@{
+    var scheduleItems = webApp.Common.GetSchedules();
+    int idx = 1;
+
+}
+
+<div id="schedule-container">
+    <table class="table table-striped" style="font-size:13px;">
+        <tbody>
+            <tr>
+                <th style="color:#ffffff;background-color: #d1d3d4;" class="span1">STT</th>
+                <th style="color:#ffffff;background-color: #d1d3d4;" class="span3">TÊN LỚP</th>
+                <th style="color:#ffffff;background-color: #d1d3d4;" class="span3">KHAI GIẢNG</th>
+                <th style="color:#ffffff;background-color: #d1d3d4;" class="span3">LỊCH HỌC</th>
+
+            </tr>
+
+        </tbody>
+        <tbody>
+            @foreach (var item in scheduleItems)
+            {
+                <tr><td>@(idx++)</td><td style="color:#000000">@item.title</td><td>@item.date_begin.Value.ToDateString()</td><td>@item.content</td></tr>
+            }
+        </tbody>
+    </table>
+</div>

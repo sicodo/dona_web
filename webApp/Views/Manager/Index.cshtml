@@ -1,0 +1,37 @@
+﻿<section class="tab-content">
+    <section class="tab-pane active fade in content" id="dashboard">
+        @{Html.RenderPartial("_Dashboard");}
+    </section>
+
+    <section class="tab-pane fade" id="configuration">
+        @{Html.RenderPartial("_Configuration");}
+    </section>
+
+    <section class="tab-pane fade" id="users">
+        @{Html.RenderPartial("_Member");}
+    </section>
+
+    <section class="tab-pane fade" id="contents">
+        @{Html.RenderPartial("_Content");}
+    </section>
+</section>
+<div class="hidden" id="dlgContentEdit">
+    @{Html.RenderPartial("Partials/_ContentEdit");}
+</div>
+@section Scripts{
+    <script type="text/javascript">
+    var course_tab = {
+        container: $("#course-container"),
+
+        getCourses: function () {
+            $.get("@Url.Action("_GetCourses", "Manager")", null, function (data) {
+                course_tab.container.html(data);
+            });
+        },
+
+        load: function () {
+            course_tab.getCourses();
+        }
+    };
+    </script>
+}

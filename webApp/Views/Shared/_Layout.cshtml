@@ -1,0 +1,28 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/bootstrap")
+    @Styles.Render("~/Content/fontawesome")
+    @Styles.Render("~/Content/site")
+</head>
+<body>
+    <div id="page-wrapper" class="container">
+        <div id="page-header" class="">
+            @Html.Partial("Partials/_Header")
+        </div>
+        <div id="page-body">@RenderBody()</div>
+        <div id="page-footer">
+            @Html.Partial("Partials/_Footer")
+        </div>
+    </div>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/site")
+    @RenderSection("scripts", required: false)
+    @Html.Partial("Partials/_ClientVariables")
+    @Html.Partial("Plugins/_SupportOnline")
+</body>
+</html>
